@@ -1,0 +1,12 @@
+{
+  "AW.Title":"Axon Wheel",
+  "AW.Manager":"Axon Wheel",
+  "AW.OpenManager":"Räder verwalten",
+  "AW.ManagerHint":"Gewinne, FX, Regeln, Szenenplatzierungen und ausstehende Vergaben verwalten.",
+  "AW.Open":"Nächstes Axon Wheel öffnen",
+  "AW.OpenHint":"Eigenen Token auswählen und das nächstgelegene Rad öffnen.",
+  "AW.ReducedMotion":"Bewegungen reduzieren",
+  "AW.ReducedMotionHint":"Rad springt zum Ergebnis; Sternenregen und Tokenleuchten werden unterdrückt.",
+  "AW.Mute":"Axon Wheel-Audio stummschalten",
+  "AW.MuteHint":"Unterdrückt nur die Audiowiedergabe dieses Moduls auf diesem Gerät."
+}

@@ -1,0 +1,117 @@
+/* Axon Wheel administration. Deliberately scoped away from the player scene. */
+.arcane-wheels.aw-manager {
+  --aw-bg:#111416;--aw-panel:#1b2024;--aw-line:#30383d;--aw-text:#f0f3f4;
+  --aw-muted:#a9b4bb;--aw-gold:#e4e9ec;--aw-purple:#ff6577;--aw-accent:#ff6577;
+  color-scheme:dark;background:var(--aw-bg);border:1px solid #424b52;border-radius:12px;
+  box-shadow:0 24px 90px #0009;font:14px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;
+  max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px);min-width:0;
+}
+.aw-manager *,.aw-manager *::before,.aw-manager *::after{box-sizing:border-box}
+.arcane-wheels.aw-manager .window-header{background:#111416;color:#b9c3ca;padding:10px 16px;border-bottom:1px solid #2c3339}
+.arcane-wheels.aw-manager .window-content{min-height:0;flex:1;display:flex;flex-direction:column;background:var(--aw-bg)}
+.arcane-wheels.aw-manager .aw-root{width:100%;min-height:0;flex:1;overflow:hidden}
+.arcane-wheels.aw-manager :is(h1,h2,h3){font-family:inherit;letter-spacing:-.025em;color:var(--aw-text);font-weight:650;text-shadow:none}
+.arcane-wheels.aw-manager h1{font-size:32px;line-height:1.15;margin:0 0 6px}
+.arcane-wheels.aw-manager h2{font-size:25px;margin:0 0 12px}
+.arcane-wheels.aw-manager h3{font-size:17px;margin:0 0 12px}
+.arcane-wheels.aw-manager p{max-width:76ch;color:#c0c9cf;line-height:1.7}
+.arcane-wheels.aw-manager .aw-manager-header{background:#171c20;padding:24px 28px;gap:20px;flex-wrap:wrap;border-bottom:1px solid var(--aw-line)}
+.arcane-wheels.aw-manager .aw-eyebrow{color:#a9b4bb;font-size:10px;letter-spacing:.16em;margin-bottom:8px}
+.arcane-wheels.aw-manager .aw-brand-dot{color:var(--aw-accent)}
+.arcane-wheels.aw-manager .aw-manager-header small{font-size:12px}
+.arcane-wheels.aw-manager button{height:auto;min-height:40px;line-height:1.45;max-width:100%;white-space:normal;overflow-wrap:anywhere;background:#242b30;border:1px solid #3b464e;color:#e3e9ed;border-radius:6px;padding:9px 14px;font-family:inherit;font-size:12px;font-weight:600;line-height:1.5;box-shadow:none;transition:background .12s,border-color .12s}
+.arcane-wheels.aw-manager button:hover{background:#303a41;border-color:#6b7a84;box-shadow:none}
+.arcane-wheels.aw-manager button.aw-primary{background:var(--aw-accent);border-color:var(--aw-accent);color:#151719;font-weight:750}
+.arcane-wheels.aw-manager button.aw-primary:hover{background:#ff8593;border-color:#ff8593}
+.arcane-wheels.aw-manager button.aw-danger{background:#332125;border-color:#75404a;color:#ffb8c1}
+.arcane-wheels.aw-manager :is(button,input,select,textarea):focus-visible{outline:2px solid #ff8f9d;outline-offset:3px}
+.arcane-wheels.aw-manager .aw-tabs{gap:4px;padding:8px 24px;background:#171c20;border-bottom:1px solid var(--aw-line);flex-wrap:nowrap;overflow-x:auto}
+.arcane-wheels.aw-manager .aw-tabs button{flex:0 0 auto;min-height:36px;border:1px solid transparent;border-radius:5px;padding:7px 13px;font-size:12px;color:var(--aw-muted);background:transparent}
+.arcane-wheels.aw-manager .aw-tabs button:hover{color:#fff;background:#252d33}
+.arcane-wheels.aw-manager .aw-tabs button.active{color:#ffb0ba;background:#ff657714;border-color:#ff65773d}
+.arcane-wheels.aw-manager .aw-workspace{grid-template-columns:212px minmax(0,1fr);flex:1;min-height:0;overflow:hidden}
+.arcane-wheels.aw-manager .aw-wheel-list{padding:22px 12px;background:#14191d;border-right:1px solid var(--aw-line);min-width:0}
+.arcane-wheels.aw-manager .aw-library-heading{display:flex;justify-content:space-between;align-items:center;padding:0 10px 18px;font-size:10px;letter-spacing:.13em;font-weight:700;color:#9ba9b2}
+.arcane-wheels.aw-manager .aw-library-heading span{border:1px solid #38434a;border-radius:4px;padding:0 6px;letter-spacing:0;color:#d5dde2}
+.arcane-wheels.aw-manager .aw-library-empty{font-size:12px;padding:0 10px}
+.arcane-wheels.aw-manager .aw-wheel-list button{gap:6px;padding:13px 12px;margin-bottom:8px;border:1px solid transparent;border-radius:6px;border-left:3px solid transparent;background:transparent}
+.arcane-wheels.aw-manager .aw-wheel-list button.active{background:#232b31;border-color:#3a454d;border-left-color:var(--aw-accent)}
+.arcane-wheels.aw-manager .aw-wheel-list b{font-size:13px;overflow-wrap:anywhere;color:#eff2f4}
+.arcane-wheels.aw-manager .aw-wheel-list small{font-size:11px;font-weight:400}
+.arcane-wheels.aw-manager .aw-editor{min-width:0;padding:22px 28px 32px;scrollbar-gutter:stable;overscroll-behavior:contain;overflow:auto}
+.arcane-wheels.aw-manager .aw-editor-heading{display:flex;align-items:center;gap:10px;margin-bottom:26px;color:#a9b4bb;font-size:11px;overflow-wrap:anywhere}
+.arcane-wheels.aw-manager .aw-editor-heading span+span::before{content:"/";color:#62717b;margin-right:10px}
+.arcane-wheels.aw-manager .aw-editor-heading span+span{color:#e7edef}
+.arcane-wheels.aw-manager .aw-empty{max-width:540px;margin:40px auto;padding:20px 10px;text-align:left}
+.arcane-wheels.aw-manager .aw-empty-mark{display:grid;place-items:center;width:60px;height:60px;border:1px solid #ff65775c;border-radius:12px;color:#ff8897;background:#ff657710;font-size:20px;font-weight:800;letter-spacing:-.08em;margin-bottom:24px}
+.arcane-wheels.aw-manager .aw-empty h2{font-size:30px;line-height:1.2;max-width:380px}
+.arcane-wheels.aw-manager .aw-empty button{margin-top:10px}
+.arcane-wheels.aw-manager .aw-stats{gap:12px;margin:24px 0}
+.arcane-wheels.aw-manager .aw-stats div{border:1px solid var(--aw-line);border-radius:8px;background:#1a2025;padding:18px 20px;color:var(--aw-muted);font-size:12px}
+.arcane-wheels.aw-manager .aw-stats b{font:650 32px/1.2 system-ui;color:#f0f3f4;font-variant-numeric:tabular-nums;margin-bottom:8px}
+.arcane-wheels.aw-manager .aw-toolbar{gap:8px}
+.arcane-wheels.aw-manager .aw-section-heading{flex-wrap:wrap;gap:12px}
+.arcane-wheels.aw-manager .aw-form-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,255px),1fr));gap:18px 20px;margin:20px 0;align-items:start}
+.arcane-wheels.aw-manager .aw-field{gap:8px;color:#c9d2d8;font:500 12px/1.55 system-ui;min-width:0;overflow-wrap:anywhere}
+.arcane-wheels.aw-manager :is(input,select,textarea){background:#11171b;color:#edf2f4;border:1px solid #46535c;border-radius:5px;font:400 14px/1.5 system-ui;padding:10px 12px;min-height:42px;height:auto;min-width:0;box-shadow:none}
+.arcane-wheels.aw-manager select{padding-right:28px;text-overflow:ellipsis}
+.arcane-wheels.aw-manager option{background:#1b2329;color:#f0f3f4}
+.arcane-wheels.aw-manager textarea{min-height:100px}
+.arcane-wheels.aw-manager input[type=checkbox]{height:18px;min-height:18px;width:18px;padding:0;accent-color:var(--aw-accent);margin-top:2px}
+.arcane-wheels.aw-manager input[type=color]{padding:4px}
+.arcane-wheels.aw-manager .aw-check{align-items:flex-start;min-height:42px;padding:10px 0;line-height:1.6;color:#c9d2d8;font-size:12px}
+.arcane-wheels.aw-manager .aw-card{background:#1b2126;border:1px solid #38434b;border-radius:8px;padding:22px;margin-bottom:18px;box-shadow:0 3px 10px #0002}
+.arcane-wheels.aw-manager .aw-card header{gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--aw-line);padding-bottom:16px}
+.arcane-wheels.aw-manager .aw-card header b{font-size:16px;color:#f0f3f4;overflow-wrap:anywhere;min-width:0}
+.arcane-wheels.aw-manager .aw-card header button{min-height:32px;width:auto}
+.arcane-wheels.aw-manager .aw-segment-number{background:#313b43;color:#c9d4dc;border-radius:4px;padding:3px 7px;font:600 11px/1.5 system-ui;font-variant-numeric:tabular-nums}
+.arcane-wheels.aw-manager .aw-drag{font-size:19px;color:#8999a5;padding:0 3px}
+.arcane-wheels.aw-manager .aw-segment-body{grid-template-columns:88px minmax(0,1fr);gap:20px;margin-top:20px;align-items:start}
+.arcane-wheels.aw-manager .aw-theme-preview{width:88px;border:1px solid #4d5861;border-radius:8px;aspect-ratio:1;object-fit:cover}
+.arcane-wheels.aw-manager .aw-segment-body .aw-form-grid{margin-top:0}
+.arcane-wheels.aw-manager .aw-chance-summary{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;background:#202b30;border:1px solid #405660;border-radius:8px;padding:16px 18px;margin-bottom:14px}
+.arcane-wheels.aw-manager .aw-chance-summary strong{font:650 19px/1.4 system-ui;color:#e6f4f7;white-space:nowrap}
+.arcane-wheels.aw-manager .aw-chance-summary span{color:#bcced6;flex:1;min-width:min(100%,170px);font-size:12px}
+.arcane-wheels.aw-manager details{border-top:1px solid var(--aw-line);margin-top:16px;padding-top:8px}
+.arcane-wheels.aw-manager details>summary{font:600 12px/1.6 system-ui;color:#d1dce3;padding:10px 0;cursor:pointer}
+.arcane-wheels.aw-manager details[open]>summary{margin-bottom:12px;color:#ffabb6}
+.arcane-wheels.aw-manager .aw-action{background:#141b20;border-color:#35434c;border-radius:6px;padding:18px;margin:14px 0}
+.arcane-wheels.aw-manager .aw-help{background:#1a252b;border:1px solid #354d58;border-radius:8px;padding:20px;margin-top:24px}
+.arcane-wheels.aw-manager .aw-help b{color:#deebf1}
+.arcane-wheels.aw-manager .aw-help p:last-child{margin-bottom:0}
+.arcane-wheels.aw-manager .aw-label-settings{border-color:var(--aw-line);padding-top:20px;margin-top:20px}
+.arcane-wheels.aw-manager .aw-label-settings>b{color:#e0e8ed;font:600 14px system-ui}
+.arcane-wheels.aw-manager .aw-design-preview{background:#161c21;border:1px solid var(--aw-line);border-radius:8px;padding:20px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin:24px 0}
+.arcane-wheels.aw-manager .aw-theme-gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.arcane-wheels.aw-manager .aw-theme-gallery button{background:#1c242a;border:1px solid #39464f;overflow:hidden;padding:10px}
+.arcane-wheels.aw-manager .aw-theme-gallery img{border-radius:5px}
+.arcane-wheels.aw-manager .aw-theme-gallery span{display:block;padding-top:8px}
+.arcane-wheels.aw-manager .aw-kind{background:#28373e;border:1px solid #475d68;color:#c9dde5;white-space:normal}
+.arcane-wheels.aw-manager .aw-footer{background:#171d22;border-top:1px solid #37424a;padding:14px 24px;gap:10px;flex-wrap:wrap}
+.arcane-wheels.aw-manager .aw-draft-status{font-size:11px;color:#adbcc6;min-width:140px}
+.arcane-wheels.aw-manager code{background:#11171b;color:#cbdce6}
+.arcane-wheels.aw-manager .aw-error{color:#ffb0bc}
+@media(max-width:900px){
+  .arcane-wheels.aw-manager .aw-workspace{grid-template-columns:170px minmax(0,1fr)}
+  .arcane-wheels.aw-manager .aw-editor{padding:20px}
+  .arcane-wheels.aw-manager .aw-segment-body{grid-template-columns:1fr}
+  .arcane-wheels.aw-manager .aw-theme-preview{width:68px}
+}
+@media(max-width:620px){
+  .arcane-wheels.aw-manager .aw-manager-header{padding:18px;gap:16px}
+  .arcane-wheels.aw-manager h1{font-size:27px}
+  .arcane-wheels.aw-manager .aw-workspace{display:flex;flex-direction:column}
+  .arcane-wheels.aw-manager .aw-wheel-list{display:flex;gap:8px;flex-shrink:0;max-height:100px;overflow:auto;border-right:0;border-bottom:1px solid var(--aw-line);padding:10px}
+  .arcane-wheels.aw-manager .aw-wheel-list button{min-width:150px;width:150px;margin:0}
+  .arcane-wheels.aw-manager .aw-library-heading{display:none}
+  .arcane-wheels.aw-manager .aw-editor{flex:1;padding:18px}
+  .arcane-wheels.aw-manager .aw-tabs{padding:8px 10px}
+  .arcane-wheels.aw-manager .aw-stats{gap:8px}
+  .arcane-wheels.aw-manager .aw-stats div{padding:12px 10px}
+  .arcane-wheels.aw-manager .aw-design-preview{grid-template-columns:1fr}
+  .arcane-wheels.aw-manager .aw-theme-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .arcane-wheels.aw-manager .aw-footer{padding:12px 16px}
+  .arcane-wheels.aw-manager .aw-draft-status{flex-basis:100%}
+  .arcane-wheels.aw-manager .aw-card{padding:16px}
+}
+@media(prefers-reduced-motion:reduce){.arcane-wheels.aw-manager button{transition:none}}

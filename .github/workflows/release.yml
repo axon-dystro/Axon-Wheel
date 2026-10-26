@@ -1,0 +1,56 @@
+name: Publish Axon Wheel
+on:
+  push:
+    branches: [main]
+    paths: [module.json, .github/workflows/release.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: axon-wheel-release
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm run check && npm test && npm run build
+      - run: npm install --no-save --package-lock=false playwright@1.51.1
+      - run: npx playwright install --with-deps chromium
+      - run: node tools/preview.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: manager-preview
+          path: |
+            dist/manager-preview.png
+            dist/visual-check.txt
+      - name: Publish versioned release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="$(node -p "JSON.parse(require('fs').readFileSync('module.json')).version")"
+          tag="v${version}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Release already exists; refusing to replace published assets."
+            exit 0
+          fi
+          python3 - <<'PY' > release-notes.md
+          from pathlib import Path
+          text = Path('CHANGELOG.md').read_text().split('\n## ', 1)[0]
+          print(text)
+          print('\nInstallation in Foundry: https://raw.githubusercontent.com/axon-dystro/Axon-Wheel/main/module.json')
+          print('\nAlpha release; Foundry 14.367 / D&D5e 6.0.6 are the target environment. Full live acceptance remains pending.')
+          PY
+          gh release create "$tag" --target "$GITHUB_SHA" --prerelease \
+            --title "Axon Wheel – re-Quested Glücksrad ${version}" \
+            --notes-file release-notes.md \
+            "dist/axon-wheel-${version}.zip" dist/module.json dist/SHA256SUMS.txt dist/manager-preview.png dist/visual-check.txt
