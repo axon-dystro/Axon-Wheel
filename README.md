@@ -30,7 +30,15 @@ Danach in der Welt **Axon´s Glücksrad** aktivieren. Als GM links das Rad-Symbo
 | Download | https://github.com/axon-dystro/Axon-Wheel/releases/download/v0.5.0-alpha.8/axon-wheel-0.5.0-alpha.8.zip |
 | README | https://github.com/axon-dystro/Axon-Wheel/blob/main/README.md |
 
-Die interne Paket-ID bleibt aus Kompatibilitätsgründen `arcane-wheels`. Sie hält vorhandene Räder, Vorräte, Platzierungen und Einstellungen zugeordnet. Eine Umbenennung des Modulordners ist nicht erforderlich.
+Die interne Paket-ID bleibt aus Kompatibilitätsgründen `arcane-wheels`. Sie hält vorhandene Räder, Vorräte, Platzierungen und Einstellungen zugeordnet. Der Modulordner muss deshalb ebenfalls exakt `arcane-wheels` heißen.
+
+### Manuelle Installation und Fehler „Invalid module“
+
+Der Modulordner muss exakt `arcane-wheels` heißen. Die Datei muss direkt unter `Data/modules/arcane-wheels/module.json` liegen. Die Ordnernamen `Axon-Wheel`, `Axon-Wheel-main` und `Axon-Wheel-Asset-Free-main` sind für die Installation ungültig.
+
+Foundry vollständig beenden. Eine Sicherung der Welt und der betroffenen Modulordner anlegen. Nur die gewünschte Variante in `Data/modules/arcane-wheels` ablegen; die andere Variante außerhalb von `Data/modules` aufbewahren. Bei einer zusätzlichen Unterebene den Ordner verwenden, der unmittelbar `module.json`, `scripts` und `styles` enthält. Anschließend Foundry neu starten.
+
+Die ID in `module.json` bleibt `arcane-wheels`. Original und Asset-Free sind alternative Installationen mit derselben ID, keine zwei parallel ladbaren Module. Zum manuellen Herunterladen das versionierte Release-Paket verwenden, nicht GitHubs „Source code“-ZIP. Manifest-Installation und automatische Updates benötigen öffentlich erreichbare Dateien; private GitHub-Links funktionieren dafür ohne zusätzliche Authentifizierung nicht.
 
 ## Oberfläche in Alpha 6
 
