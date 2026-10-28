@@ -1,3 +1,10 @@
+## 0.5.0-alpha.9 — 28.10.2026
+
+- Neues Paket der Originalfassung mit Halloween-Grafiken und drei unterschiedlichen Geisterdialogen.
+- Aktualisierte Installationsanleitung: Ordner und technische Modul-ID müssen arcane-wheels heißen.
+- Versionierter Download und Manifest auf Alpha 9 aktualisiert.
+- Keine Änderung an Klickverhalten oder Spiellogik; vollständige Live-Abnahme weiterhin ausstehend.
+
 ## 0.5.0-alpha.8 — 28.10.2026
 
 - Drei unterschiedliche Geister: „Buuuh!“, „Habt ihr PandaMaru gesehen …?“ und ein Werbegeist.
