@@ -17,7 +17,7 @@ test("actual entry point registers V14 settings, menus, bindings and public API"
   assert.deepEqual(Object.keys(module.api).sort(),["openManager","openPlacement"]);
   assert.ok(callbacks.has("createChatMessage"));assert.ok(callbacks.has("canvasReady"));assert.equal(bindings.has("open"),false);
   const controls={tokens:{order:0,tools:{}}};callbacks.get("getSceneControlButtons")(controls);
-  assert.equal(controls.arcaneWheels.title,"Axon Wheel");assert.ok(controls.arcaneWheels.tools.manage.button);assert.equal(controls.arcaneWheels.tools.manage.visible,true);
+  assert.equal(controls.arcaneWheels.title,"Axon´s Glücksrad");assert.ok(controls.arcaneWheels.tools.manage.button);assert.equal(controls.arcaneWheels.tools.manage.visible,true);
   const {WheelManager}=await import("../scripts/ui/manager.js");let opens=0;
   WheelManager.prototype.render=async function(){opens++;this.rendered=true;return this;};
   const selection={name:"arcaneWheels"};globalThis.ui={controls:{control:selection,activate:async options=>{selection.name=options.control;}}};

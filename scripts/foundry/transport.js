@@ -19,7 +19,7 @@ export class Transport {
     return this.find(packet.eventId) ?? this.create(packet,recipients,content);
   }
   async request(request) {
-    requireThat(game.users.activeGM,"GM","Für Axon Wheel muss ein GM verbunden sein.");
+    requireThat(game.users.activeGM,"GM","Für Axon´s Glücksrad muss ein GM verbunden sein.");
     const nonce = uid();
     const promise = new Promise((resolve,reject)=>{
       const timer = setTimeout(()=>{
@@ -30,7 +30,7 @@ export class Transport {
     });
     try {
       await this.create({type:"request",nonce,...request},this.gmIds(),
-        `<div class="aw-chat"><small>✦ Axon Wheel · ${request.op === "spin" ? "Drehung angefragt" : "Rad öffnen"}</small></div>`);
+        `<div class="aw-chat"><small>✦ Axon´s Glücksrad · ${request.op === "spin" ? "Drehung angefragt" : "Rad öffnen"}</small></div>`);
     } catch(error) {
       const pending = this.pending.get(nonce);
       if (pending) {clearTimeout(pending.timer);this.pending.delete(nonce);pending.reject(error);}
@@ -55,7 +55,7 @@ export class Transport {
         await this.once({type:"reply",nonce:packet.nonce,eventId:`reply-${message.id}`,requestId:message.id,result},
           recipients,`<div class="aw-chat"><small>✦ ${result.op === "preview" ? "Rad bereit" : "Drehung verarbeitet"}</small></div>`);
       } catch(error) {
-        console.error("Axon Wheel | Anfrage",error);
+        console.error("Axon´s Glücksrad | Anfrage",error);
         await this.once({type:"reply",nonce:packet.nonce,eventId:`reply-${message.id}`,requestId:message.id,
           error:String(error.message ?? error).slice(0,1000)},recipients,
         `<div class="aw-chat aw-error">✦ ${escapeHTML(error.message ?? error)}</div>`);

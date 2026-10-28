@@ -79,5 +79,5 @@ test("Design exposes global and per-prize typography with independent chance and
  globalThis.foundry={applications:{api:{ApplicationV2:class{}}}};
  const {WheelManager}=await import('../scripts/ui/manager.js');const m=new WheelManager({});m.draft=defaultWheel();m.record=emptyRecord(m.draft);m.tab="design";
  const html=m.panel();assert.match(html,/Standard-Textausrichtung/);assert.match(html,/Oben nach unten/);assert.match(html,/segments\.0\.fontSize/);assert.match(html,/segments\.0\.showStock/);assert.match(html,/appearance\.dim/);
- assert.equal(WheelManager.DEFAULT_OPTIONS.window.title,"Axon Wheel");
+ assert.equal(WheelManager.DEFAULT_OPTIONS.window.title,"Axon´s Glücksrad");
 });

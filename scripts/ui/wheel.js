@@ -11,7 +11,7 @@ export async function loadThemeImages(segments) {
   const loaded=await Promise.all(paths.map(path=>{
     if(!images.has(path))images.set(path,new Promise(resolve=>{
       const img=new Image();let timer;
-      const done=image=>{clearTimeout(timer);img.onload=null;img.onerror=null;if(!image){images.delete(path);globalThis.ui?.notifications.warn("Axon Wheel: Ein Segmentbild konnte nicht geladen werden. Bitte den Bildpfad prüfen.");}resolve(image);};
+      const done=image=>{clearTimeout(timer);img.onload=null;img.onerror=null;if(!image){images.delete(path);globalThis.ui?.notifications.warn("Axon´s Glücksrad: Ein Segmentbild konnte nicht geladen werden. Bitte den Bildpfad prüfen.");}resolve(image);};
       img.onload=()=>done(img);img.onerror=()=>done(null);timer=setTimeout(()=>done(null),10000);img.src=path;
     }));
     return images.get(path).then(image=>[path,image]);
@@ -53,12 +53,12 @@ export function drawWheel(canvas,segments,art=new Map()) {
   ctx.beginPath();ctx.moveTo(c,c-29);ctx.lineTo(c+8,c-8);ctx.lineTo(c+29,c);ctx.lineTo(c+8,c+8);ctx.lineTo(c,c+29);ctx.lineTo(c-8,c+8);ctx.lineTo(c-29,c);ctx.lineTo(c-8,c-8);ctx.closePath();ctx.fillStyle="#b5ffeb";ctx.fill();
 }
 export class PlayerWheel extends ArcaneApplication {
-  static DEFAULT_OPTIONS={id:"arcane-wheels-player",classes:["arcane-wheels","aw-overlay"],window:{title:"Axon Wheel",frame:false,positioned:false,resizable:false}};
+  static DEFAULT_OPTIONS={id:"arcane-wheels-player",classes:["arcane-wheels","aw-overlay"],window:{title:"Axon´s Glücksrad",frame:false,positioned:false,resizable:false}};
   constructor({view,placementId,tokenUuid,transport}){super();this.view=view;this.placementId=placementId;this.tokenUuid=tokenUuid;this.transport=transport;this.busy=false;this.outcome=null;this.animation=null;this.seenSpins=new Set();this.zoom=1;this.finalAngle=0;}
   async html(){
     const appearance=this.view.appearance ?? {dim:65,glow:true,decorations:true};
-    return `<div class="aw-backdrop" aria-hidden="true" style="--aw-dim:${appearance.dim/100}"></div><div class="aw-floating ${appearance.glow ? "aw-lit" : ""}" role="dialog" aria-label="Axon Wheel"><button type="button" class="aw-overlay-close" title="Schließen (Escape)" aria-label="Schließen">✕</button>
-      <header class="aw-floating-title"><div class="aw-eyebrow">AXON´S GLÜCKSRAD · MAGICAL HALLOWEEN</div><h1>${escapeHTML(this.view.name)}</h1><p>${escapeHTML(this.view.description)}</p></header>
+    return `<div class="aw-backdrop" aria-hidden="true" style="--aw-dim:${appearance.dim/100}"></div><div class="aw-floating ${appearance.glow ? "aw-lit" : ""}" role="dialog" aria-label="Axon´s Glücksrad"><button type="button" class="aw-overlay-close" title="Schließen (Escape)" aria-label="Schließen">✕</button>
+      <header class="aw-floating-title"><div class="aw-eyebrow">Axon´s Glücksrad</div><small class="aw-studio">created by re-quested Studio</small><div class="aw-eyebrow aw-wheel-category">MAGICAL HALLOWEEN</div><h1>${escapeHTML(this.view.name)}</h1><p>${escapeHTML(this.view.description)}</p></header>
       <img data-easter="ghost" role="button" tabindex="0" aria-label="Geist ansprechen" class="aw-floating-ghost aw-floating-ghost-left" src="modules/arcane-wheels/assets/ghost.svg" alt=""><img data-easter="ghost" role="button" tabindex="0" aria-label="Geist ansprechen" class="aw-floating-ghost aw-floating-ghost-right" src="modules/arcane-wheels/assets/ghost.svg" alt=""><img data-easter="credit" role="button" tabindex="0" aria-label="Kleinen Geist ansprechen" class="aw-floating-ghost aw-floating-ghost-small" src="modules/arcane-wheels/assets/ghost.svg" alt="">
       ${appearance.decorations ? `<div class="aw-ground-decor"><img data-easter="pumpkin" role="button" tabindex="0" aria-label="Kürbis ansprechen" class="aw-ground-left" src="modules/arcane-wheels/assets/pumpkin-cluster.svg" alt=""><img data-easter="pumpkin" role="button" tabindex="0" aria-label="Kürbis ansprechen" class="aw-ground-right" src="modules/arcane-wheels/assets/pumpkin-cluster.svg" alt=""></div>` : ""}
       <div class="aw-speech" role="status" aria-live="polite" hidden></div><div class="aw-wheel-viewport"><div class="aw-wheel-stage" style="--aw-zoom:${this.zoom}"><div class="aw-pointer" aria-hidden="true"></div><canvas width="1024" height="1024" aria-label="Glücksrad mit Halloween-Motiven" role="img"></canvas></div></div>
@@ -75,11 +75,11 @@ export class PlayerWheel extends ArcaneApplication {
     for(const decoration of this.element.querySelectorAll("[data-easter]")) {
       const speak=()=>{
         const bubble=this.element.querySelector(".aw-speech"),rect=decoration.getBoundingClientRect();
-        const messages={ghost:"Buh!",pumpkin:"S… Su… SUPPE?! Lieber nicht!",credit:"Made by Axon · Discord: @AxonCS"};
+        const messages={ghost:"Hol dein eigenes Modul auf re-quested.de",pumpkin:"S… Su… SUPPE?! Lieber nicht!",credit:"Hol dein eigenes Modul auf re-quested.de"};
         bubble.textContent=messages[decoration.dataset.easter];bubble.hidden=false;
-        bubble.style.left=`${Math.max(120,Math.min(innerWidth-120,rect.left+rect.width/2))}px`;
-        bubble.style.top=`${Math.max(16,rect.top-65)}px`;
-        clearTimeout(this.speechTimer);this.speechTimer=setTimeout(()=>{bubble.hidden=true;},4500);
+        bubble.style.left=`${Math.max(Math.min(160,innerWidth/2),Math.min(innerWidth-Math.min(160,innerWidth/2),rect.left+rect.width/2))}px`;
+        bubble.style.top=`${Math.max(16,rect.top-bubble.offsetHeight-16)}px`;
+        clearTimeout(this.speechTimer);this.speechTimer=setTimeout(()=>{bubble.hidden=true;},6500);
       };
       decoration.addEventListener("click",speak);
       decoration.addEventListener("keydown",event=>{if(["Enter"," "].includes(event.key)){event.preventDefault();speak();}});

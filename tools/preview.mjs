@@ -19,10 +19,10 @@ const server=createServer(async(req,res)=>{
   const url=new URL(req.url,'http://localhost');
   if(url.pathname==='/'){
    manager.tab=url.searchParams.get('tab')??'segments';
-   const css=await Promise.all(['styles/arcane-wheels.css','styles/manager.css'].map(p=>readFile(p,'utf8')));
+   const css=await Promise.all(['styles/arcane-wheels.css'].map(p=>readFile(p,'utf8')));
    const html=await manager.html();
    res.setHeader('Content-Type','text/html; charset=utf-8');
-   res.end(`<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#0b1013;font-family:system-ui;padding:12px}*{box-sizing:border-box}.aw-manager{width:min(1120px,100%);height:calc(100dvh - 24px);margin:auto;display:flex;flex-direction:column}.window-content{flex:1;min-height:0}button{cursor:pointer}img{max-width:100%}${css.join('\n')}</style><section class="arcane-wheels aw-manager"><div class="window-header">Axon Wheel – re-Quested Glücksrad</div><div class="window-content"><section class="aw-root">${html}</section></div></section>`);
+   res.end(`<!doctype html><meta charset="utf-8"><style>body{margin:0;background:#0b1013;font-family:system-ui;padding:12px}*{box-sizing:border-box}.aw-manager{width:min(1120px,100%);height:calc(100dvh - 24px);margin:auto;display:flex;flex-direction:column}.window-content{flex:1;min-height:0}button{cursor:pointer}img{max-width:100%}${css.join('\n')}</style><section class="arcane-wheels aw-manager"><div class="window-header">Axon´s Glücksrad</div><div class="window-content"><section class="aw-root">${html}</section></div></section>`);
   }else{
    const file=path.resolve(root,'.'+url.pathname.replace('/modules/arcane-wheels',''));
    if(!file.startsWith(root+path.sep))throw new Error('Bad path');

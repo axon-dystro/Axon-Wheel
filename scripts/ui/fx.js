@@ -4,7 +4,7 @@ export async function showFX(action) {
   if(action.type === "sound") {
     if(game.settings.get(ID,"mute")) return;
     try {await foundry.audio.AudioHelper.play({src:action.value,volume:action.volume,loop:false,autoplay:true},false);}
-    catch(error) {console.warn("Axon Wheel | Audiowiedergabe fehlgeschlagen",error);ui.notifications.warn("Axon Wheel: Audiodatei konnte nicht abgespielt werden.");}
+    catch(error) {console.warn("Axon´s Glücksrad | Audiowiedergabe fehlgeschlagen",error);ui.notifications.warn("Axon´s Glücksrad: Audiodatei konnte nicht abgespielt werden.");}
     return;
   }
   if(action.type === "chat") return; // The authoritative whispered ChatMessage IS this action.

@@ -26,12 +26,12 @@ export async function save(record) {
   const data = JSON.stringify(record);
   requireThat(data.length < 4000000,"SIZE","Radprotokoll zu groß. Exportieren und Rad kopieren.");
   // A JSON string is one scalar flag: deleted nested keys cannot survive Foundry's object merge.
-  await doc.update({name:`Axon Wheel · ${record.config.name}`,[`flags.${ID}.record`]:data});
+  await doc.update({name:`Axon´s Glücksrad · ${record.config.name}`,[`flags.${ID}.record`]:data});
 }
 export async function createWheel(config) {
   assertAuthority(); validateWheel(config);
   requireThat(!documentFor(config.id),"CONFIG","Rad-ID existiert bereits.");
-  const doc=await foundry.documents.JournalEntry.create({name:`Axon Wheel · ${config.name}`,ownership:{default:0},
+  const doc=await foundry.documents.JournalEntry.create({name:`Axon´s Glücksrad · ${config.name}`,ownership:{default:0},
     flags:{[ID]:{kind:"wheel",wheelId:config.id,record:JSON.stringify(emptyRecord(config))}}});
   const ids=game.settings.get(ID,"registry").ids;
   try {await game.settings.set(ID,"registry",{ids:[...ids,doc.id]});}

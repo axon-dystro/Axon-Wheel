@@ -45,7 +45,7 @@ export function installInteraction(open) {
     detach();
     // Foundry's PIXI Application exposes the renderer surface as view; newer PIXI uses canvas.
     surface=canvas.app?.view ?? canvas.app?.canvas ?? globalThis.document?.getElementById("board");
-    if(!surface?.addEventListener){console.error("Axon Wheel | Zeichenfläche für Rechtsklick nicht gefunden.");return;}
+    if(!surface?.addEventListener){console.error("Axon´s Glücksrad | Zeichenfläche für Rechtsklick nicht gefunden.");return;}
     surface.addEventListener("pointerdown",onDown,true);surface.addEventListener("pointerup",onUp,true);surface.addEventListener("contextmenu",onContext,true);
   }
   Hooks.on("canvasReady",attach);

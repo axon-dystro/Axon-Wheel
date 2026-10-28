@@ -34,7 +34,7 @@ async function openPlacement(placement,token) {
     const result=await transport.request({op:"preview",wheelId:placement.wheelId,placementId:placement.placementId,tokenUuid:token.uuid});
     const state=availability(result.view);
     const question=state.allowed ? (placement.kind==="token" ? "Hey, ich habe hier ein Glücksrad. Möchtest du mal daran drehen?" : state.text) : state.text;
-    const accepted=await foundry.applications.api.DialogV2.confirm({window:{title:"Axon Wheel"},content:`<p>${question}</p>`,yes:{label:state.allowed ? "Ja, Rad öffnen" : "Verstanden"},no:{label:"Schließen"}});
+    const accepted=await foundry.applications.api.DialogV2.confirm({window:{title:"Axon´s Glücksrad"},content:`<p>${question}</p>`,yes:{label:state.allowed ? "Ja, Rad öffnen" : "Verstanden"},no:{label:"Schließen"}});
     if(!state.allowed || !accepted)return;
     if(player) await player.close();
     player=new PlayerWheel({view:result.view,placementId:placement.placementId,tokenUuid:token.uuid,transport});
@@ -49,12 +49,12 @@ async function openManager() {
   manager ??= new WheelManager(engine);await manager.render({force:true});
 }
 Hooks.on("getSceneControlButtons",controls=>{
-  controls.arcaneWheels={name:"arcaneWheels",title:"Axon Wheel",icon:"fa-solid fa-dharmachakra",
+  controls.arcaneWheels={name:"arcaneWheels",title:"Axon´s Glücksrad",icon:"fa-solid fa-dharmachakra",
     order:Math.max(0,...Object.values(controls).map(c=>c.order ?? 0))+1,visible:game.user.isGM,
     activeTool:"manage",
     onChange:(_event,active)=>{if(active)return (async()=>{
       try{await openManager();}
-      catch(error){console.error("Axon Wheel | Öffnen",error);ui.notifications.error(error.message);}
+      catch(error){console.error("Axon´s Glücksrad | Öffnen",error);ui.notifications.error(error.message);}
       finally{if(ui.controls.control?.name==="arcaneWheels")await ui.controls.activate({control:"tokens",tool:"select"});}
     })();},
     tools:{manage:{name:"manage",title:"Räder verwalten",icon:"fa-solid fa-sliders",order:0,button:true,visible:game.user.isGM,onChange:()=>openManager()}}};
@@ -81,7 +81,7 @@ transport.onPacket=(packet,message)=>packets.run(async()=>{
 });
 
 Hooks.once("init",()=>{
-  if(game.release.generation!==14) {ui.notifications.error("Axon Wheel benötigt Foundry V14.");return;}
+  if(game.release.generation!==14) {ui.notifications.error("Axon´s Glücksrad benötigt Foundry V14.");return;}
   game.settings.register(ID,"registry",{scope:"world",config:false,type:Object,default:{ids:[]}});
   game.settings.register(ID,"reducedMotion",{name:"AW.ReducedMotion",hint:"AW.ReducedMotionHint",scope:"client",config:true,type:Boolean,default:false});
   game.settings.register(ID,"mute",{name:"AW.Mute",hint:"AW.MuteHint",scope:"client",config:true,type:Boolean,default:false});
@@ -95,10 +95,10 @@ Hooks.once("init",()=>{
     }});
 });
 Hooks.on("renderChatMessageHTML",hideTransportMessage);
-Hooks.on("createChatMessage",(message,options,userId)=>{void transport.handle(message,options,userId).catch(error=>console.error("Axon Wheel | Dokumentereignis",error));});
+Hooks.on("createChatMessage",(message,options,userId)=>{void transport.handle(message,options,userId).catch(error=>console.error("Axon´s Glücksrad | Dokumentereignis",error));});
 Hooks.once("ready",()=>{
   if(game.user.isGM && game.users.activeGM?.id===game.user.id) {
     const interrupted=store.wheelDocuments().some(doc=>{try{return store.readDocument(doc).state.spins.some(s=>!["complete","awaiting","failed"].includes(s.status));}catch{return false;}});
-    if(interrupted) ui.notifications.warn("Axon Wheel: Unterbrochene Drehung gefunden. Im GM-Editor unter Betrieb prüfen.");
+    if(interrupted) ui.notifications.warn("Axon´s Glücksrad: Unterbrochene Drehung gefunden. Im GM-Editor unter Betrieb prüfen.");
   }
 });

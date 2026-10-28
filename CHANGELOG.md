@@ -1,3 +1,11 @@
+## 0.5.0-alpha.7 — 28.10.2026
+
+- Axon´s Glücksrad; created by re-quested Studio.
+- Verwaltung mit neuer Markenleiste, Radkarten, responsiven Formularen und umbrechender Navigation.
+- Verwaltungsstile im Hauptstylesheet gebündelt, damit keine zweite CSS-Datei fehlen kann.
+- Geister-Sprechblasen: „Hol dein eigenes Modul auf re-quested.de“.
+- Spiellogik und gespeicherte Daten bleiben kompatibel.
+
 ## 0.5.0-alpha.6 — 26.10.2026
 
 - Name: **Axon Wheel – re-Quested Glücksrad**, Autor / Publisher **re-Quested / Axon**.

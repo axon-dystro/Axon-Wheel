@@ -9,7 +9,7 @@ export class ArcaneApplication extends foundry.applications.api.ApplicationV2 {
   _replaceHTML(result,content) { content.replaceChildren(result); }
   async _onRender(context,options) { await super._onRender(context,options); await this.bind(); }
   bind() {}
-  async guard(task) { try {return await task();} catch(error) {console.error("Axon Wheel",error);ui.notifications.error(error.message ?? String(error));} }
+  async guard(task) { try {return await task();} catch(error) {console.error("Axon´s Glücksrad",error);ui.notifications.error(error.message ?? String(error));} }
 }
 export const field = (label,path,value,type="text",extra="") => `<label class="aw-field"><span>${e(label)}</span><input data-path="${e(path)}" type="${type}" value="${e(value ?? "")}" ${extra}></label>`;
 export const checkbox = (label,path,value) => `<label class="aw-check"><input data-path="${e(path)}" type="checkbox" ${value ? "checked" : ""}><span>${e(label)}</span></label>`;

@@ -51,6 +51,6 @@ jobs:
           print('\nAlpha release; Foundry 14.367 / D&D5e 6.0.6 are the target environment. Full live acceptance remains pending.')
           PY
           gh release create "$tag" --target "$GITHUB_SHA" --prerelease \
-            --title "Axon Wheel – re-Quested Glücksrad ${version}" \
+            --title "Axon´s Glücksrad ${version}" \
             --notes-file release-notes.md \
             "dist/axon-wheel-${version}.zip" dist/module.json dist/SHA256SUMS.txt dist/manager-preview.png dist/visual-check.txt
