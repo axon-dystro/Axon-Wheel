@@ -2,7 +2,7 @@
   "id": "arcane-wheels",
   "title": "Axon´s Glücksrad",
   "description": "Konfigurierbare Glücksräder für Foundry VTT 14: Gewinnchancen, Vorräte, Gegenstandsvergabe und individuelle Effekte. Von re-Quested.",
-  "version": "0.5.0-alpha.7",
+  "version": "0.5.0-alpha.8",
   "authors": [
     {
       "name": "re-quested Studio",
@@ -45,7 +45,7 @@
   "socket": false,
   "url": "https://github.com/axon-dystro/Axon-Wheel",
   "manifest": "https://raw.githubusercontent.com/axon-dystro/Axon-Wheel/main/module.json",
-  "download": "https://github.com/axon-dystro/Axon-Wheel/releases/download/v0.5.0-alpha.7/axon-wheel-0.5.0-alpha.7.zip",
+  "download": "https://github.com/axon-dystro/Axon-Wheel/releases/download/v0.5.0-alpha.8/axon-wheel-0.5.0-alpha.8.zip",
   "readme": "https://github.com/axon-dystro/Axon-Wheel/blob/main/README.md",
   "bugs": "https://github.com/axon-dystro/Axon-Wheel/issues"
 }

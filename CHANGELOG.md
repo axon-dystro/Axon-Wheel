@@ -1,3 +1,9 @@
+## 0.5.0-alpha.8 — 28.10.2026
+
+- Drei unterschiedliche Geister: „Buuuh!“, „Habt ihr PandaMaru gesehen …?“ und ein Werbegeist.
+- Werbeadresse re-quested.de steht vollständig und ohne Zeilenumbruch unter dem Satz.
+- Sprechblasenbreite und Randabstand berücksichtigen die tatsächliche Größe.
+
 ## 0.5.0-alpha.7 — 28.10.2026
 
 - Axon´s Glücksrad; created by re-quested Studio.

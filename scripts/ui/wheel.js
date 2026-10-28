@@ -59,7 +59,7 @@ export class PlayerWheel extends ArcaneApplication {
     const appearance=this.view.appearance ?? {dim:65,glow:true,decorations:true};
     return `<div class="aw-backdrop" aria-hidden="true" style="--aw-dim:${appearance.dim/100}"></div><div class="aw-floating ${appearance.glow ? "aw-lit" : ""}" role="dialog" aria-label="Axon´s Glücksrad"><button type="button" class="aw-overlay-close" title="Schließen (Escape)" aria-label="Schließen">✕</button>
       <header class="aw-floating-title"><div class="aw-eyebrow">Axon´s Glücksrad</div><small class="aw-studio">created by re-quested Studio</small><div class="aw-eyebrow aw-wheel-category">MAGICAL HALLOWEEN</div><h1>${escapeHTML(this.view.name)}</h1><p>${escapeHTML(this.view.description)}</p></header>
-      <img data-easter="ghost" role="button" tabindex="0" aria-label="Geist ansprechen" class="aw-floating-ghost aw-floating-ghost-left" src="modules/arcane-wheels/assets/ghost.svg" alt=""><img data-easter="ghost" role="button" tabindex="0" aria-label="Geist ansprechen" class="aw-floating-ghost aw-floating-ghost-right" src="modules/arcane-wheels/assets/ghost.svg" alt=""><img data-easter="credit" role="button" tabindex="0" aria-label="Kleinen Geist ansprechen" class="aw-floating-ghost aw-floating-ghost-small" src="modules/arcane-wheels/assets/ghost.svg" alt="">
+      <img data-easter="ghost" role="button" tabindex="0" aria-label="Geist ansprechen" class="aw-floating-ghost aw-floating-ghost-left" src="modules/arcane-wheels/assets/ghost.svg" alt=""><img data-easter="panda" role="button" tabindex="0" aria-label="Geist ansprechen" class="aw-floating-ghost aw-floating-ghost-right" src="modules/arcane-wheels/assets/ghost.svg" alt=""><img data-easter="credit" role="button" tabindex="0" aria-label="Kleinen Geist ansprechen" class="aw-floating-ghost aw-floating-ghost-small" src="modules/arcane-wheels/assets/ghost.svg" alt="">
       ${appearance.decorations ? `<div class="aw-ground-decor"><img data-easter="pumpkin" role="button" tabindex="0" aria-label="Kürbis ansprechen" class="aw-ground-left" src="modules/arcane-wheels/assets/pumpkin-cluster.svg" alt=""><img data-easter="pumpkin" role="button" tabindex="0" aria-label="Kürbis ansprechen" class="aw-ground-right" src="modules/arcane-wheels/assets/pumpkin-cluster.svg" alt=""></div>` : ""}
       <div class="aw-speech" role="status" aria-live="polite" hidden></div><div class="aw-wheel-viewport"><div class="aw-wheel-stage" style="--aw-zoom:${this.zoom}"><div class="aw-pointer" aria-hidden="true"></div><canvas width="1024" height="1024" aria-label="Glücksrad mit Halloween-Motiven" role="img"></canvas></div></div>
       <div class="aw-floating-actions"><p class="aw-result" role="status" aria-live="polite">${escapeHTML(this.outcome ?? "Die Runen warten auf dich.")}</p>
@@ -75,9 +75,14 @@ export class PlayerWheel extends ArcaneApplication {
     for(const decoration of this.element.querySelectorAll("[data-easter]")) {
       const speak=()=>{
         const bubble=this.element.querySelector(".aw-speech"),rect=decoration.getBoundingClientRect();
-        const messages={ghost:"Hol dein eigenes Modul auf re-quested.de",pumpkin:"S… Su… SUPPE?! Lieber nicht!",credit:"Hol dein eigenes Modul auf re-quested.de"};
-        bubble.textContent=messages[decoration.dataset.easter];bubble.hidden=false;
-        bubble.style.left=`${Math.max(Math.min(160,innerWidth/2),Math.min(innerWidth-Math.min(160,innerWidth/2),rect.left+rect.width/2))}px`;
+        const messages={ghost:"Buuuh!",panda:"Habt ihr PandaMaru gesehen …?",pumpkin:"S… Su… SUPPE?! Lieber nicht!",credit:"Hol dein eigenes Modul auf"};
+        bubble.textContent=messages[decoration.dataset.easter];
+        if(decoration.dataset.easter==="credit"){
+          const url=document.createElement("span");url.className="aw-speech-url";url.textContent="re-quested.de";bubble.append(url);
+        }
+        bubble.hidden=false;
+        const inset=Math.min(bubble.getBoundingClientRect().width/2+16,innerWidth/2);
+        bubble.style.left=`${Math.max(inset,Math.min(innerWidth-inset,rect.left+rect.width/2))}px`;
         bubble.style.top=`${Math.max(16,rect.top-bubble.offsetHeight-16)}px`;
         clearTimeout(this.speechTimer);this.speechTimer=setTimeout(()=>{bubble.hidden=true;},6500);
       };

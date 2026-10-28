@@ -2,7 +2,7 @@
 
 Von **re-quested Studio**. Konfigurierbare Glücksräder für deine Foundry-Welt.
 
-Installierbares Foundry-VTT-Modul für **Foundry 14**, Version **0.5.0-alpha.7**. Zielumgebung: **Foundry 14.367 mit D&D5e 6.0.6**.
+Installierbares Foundry-VTT-Modul für **Foundry 14**, Version **0.5.0-alpha.8**. Zielumgebung: **Foundry 14.367 mit D&D5e 6.0.6**.
 
 Das Modul enthält eine echte GM-geprüfte Auslosung mit persistenten Beständen, Actor-Zahlungen, Item-Vergabe und FX. Es benötigt weder socketlib noch Sequencer und installiert keine externen Laufzeitabhängigkeiten. Das erste Design ist **Magical Halloween**: kräftige Farben, leuchtende Runen und freundliche Geister.
 
@@ -22,12 +22,12 @@ Danach in der Welt **Axon´s Glücksrad** aktivieren. Als GM links das Rad-Symbo
 |---|---|
 | Name | Axon´s Glücksrad |
 | Publisher / Autor | re-quested Studio |
-| Version | 0.5.0-alpha.7 |
+| Version | 0.5.0-alpha.8 |
 | Paket-ID | arcane-wheels |
 | Projektseite | https://github.com/axon-dystro/Axon-Wheel |
 | Manifest für Updates | https://raw.githubusercontent.com/axon-dystro/Axon-Wheel/main/module.json |
-| Manifest dieser Version | https://github.com/axon-dystro/Axon-Wheel/releases/download/v0.5.0-alpha.7/module.json |
-| Download | https://github.com/axon-dystro/Axon-Wheel/releases/download/v0.5.0-alpha.7/axon-wheel-0.5.0-alpha.7.zip |
+| Manifest dieser Version | https://github.com/axon-dystro/Axon-Wheel/releases/download/v0.5.0-alpha.8/module.json |
+| Download | https://github.com/axon-dystro/Axon-Wheel/releases/download/v0.5.0-alpha.8/axon-wheel-0.5.0-alpha.8.zip |
 | README | https://github.com/axon-dystro/Axon-Wheel/blob/main/README.md |
 
 Die interne Paket-ID bleibt aus Kompatibilitätsgründen `arcane-wheels`. Sie hält vorhandene Räder, Vorräte, Platzierungen und Einstellungen zugeordnet. Eine Umbenennung des Modulordners ist nicht erforderlich.
@@ -113,7 +113,7 @@ git add . && git commit -m "Describe changes"
 npm run build
 ```
 
-Der Build erzeugt `dist/axon-wheel-0.5.0-alpha.7.zip`, `dist/module.json` und SHA-256-Prüfsummen. Das Installationsarchiv enthält nur die Laufzeitdateien und die Dokumentation. Quellcode, Tests und Werkzeuge liegen im Repository. Der Release-Workflow prüft und paketiert den Stand vor der Veröffentlichung.
+Der Build erzeugt `dist/axon-wheel-0.5.0-alpha.8.zip`, `dist/module.json` und SHA-256-Prüfsummen. Das Installationsarchiv enthält nur die Laufzeitdateien und die Dokumentation. Quellcode, Tests und Werkzeuge liegen im Repository. Der Release-Workflow prüft und paketiert den Stand vor der Veröffentlichung.
 
 - [Technische Spezifikation](docs/technical-spec.md)
 - [Anforderungsabgleich](docs/requirements.md)
